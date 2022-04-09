@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastermind</title>
+    <link rel="stylesheet" href="css/mastermind.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="board">
+        <h3>Mastermind</h3>
+        <bottom onclick="start()">START</bottom>
+        
+        <div class="megold">
+
+            <div class="mtippek">
+
+                <div class="tipp" id="tipp0_1"></div>
+                <div class="tipp" id="tipp0_2"></div>
+                <div class="tipp" id="tipp0_3"></div>
+                <div class="tipp" id="tipp0_4"></div>
+            </div>
+           
+
+        </div>
+        <div id="megadd">
+        <div class="szin" id="sz1" onclick="szinez('blue')"></div>
+        <div class="szin" id="sz2" onclick="szinez('red')"></div>
+        <div class="szin" id="sz3" onclick="szinez('yellow')"></div>
+        <div class="szin" id="sz4" onclick="szinez('green')"></div>
+        <div class="szin" id="sz5" onclick="szinez('white')"></div>
+        <div class="szin" id="sz6" onclick="szinez('black')"></div>
+        <bottom class="ready" onclick="_ready()">Kész</bottom>
+        </div>
+
+    </div>
+    </div>
+    
+    <template>
+        <div class="sor">
+
+            <div class="eredmenyek">
+
+                <div class="eredmeny" id="ered0_1"></div>
+                <div class="eredmeny" id="ered0_2"></div>
+                <div class="eredmeny" id="ered0_3"></div>
+                <div class="eredmeny" id="ered0_4"></div>
+            </div>
+            <div class="tippek">
+
+                <div class="tipp" id="tipp0_1"></div>
+                <div class="tipp" id="tipp0_2"></div>
+                <div class="tipp" id="tipp0_3"></div>
+                <div class="tipp" id="tipp0_4"></div>
+            </div>
+        </div>
+    </template>
+    <script src="js/mastermind.js"></script>
+    
+</body>
+
+</html>

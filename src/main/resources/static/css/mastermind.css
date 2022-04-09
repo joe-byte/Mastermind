@@ -1,0 +1,142 @@
+body{
+    background:  #4fb312;
+    height: 900px;
+}
+.container{
+    max-height:550px;
+    padding:30px;
+
+   
+}
+.board{
+    width: 250px;
+    padding: 5px;
+    padding-bottom:10px;
+    margin: auto;
+    position: relative;
+    background: #897cd6;
+    border-radius:20px;
+    text-align:center;
+    box-shadow: 2px 2px 5px 1px rgba(34, 16, 76, 0.65);
+}
+h3{
+    margin-top:10px;
+    
+}
+bottom{
+    cursor:pointer;
+}
+.megold{
+    
+    position: relative;
+    padding: 3px;
+    background: #897cd6;
+    margin-top:8px;
+    margin-bottom:8px;
+    margin-left:51px;
+    border-bottom: 2px solid #444444;
+    
+}
+
+.mtippek{
+   display: inline-block;
+   padding: 3px;
+}
+.sor{
+    position: relative;
+    padding: 1px;
+    width: 235px;
+    margin:auto;
+    
+}
+.eredmenyek{
+    display: inline-block;
+    border: 2px solid #444444;
+    border-radius: 10px;
+    height: 20px;
+    width:  20px;
+    padding: 2px;
+    margin-top:4px;
+    margin-left: 12px;
+    margin-right:10px;
+}
+.eredmeny{
+    display: block;
+    float: left;
+    height: 6px;
+    width: 6px;
+    background: #df1010;
+    border-radius: 50%;
+    margin: 2px;
+
+}
+.tippek{
+    display: inline-block;
+}
+.tipp{
+    border: 2px solid #1924c5;
+    border-radius: 50%;
+    background: #7e6969;
+    float: left;
+    margin: 3px 10px;
+    height: 19px;
+    width:  19px;
+}
+.currentsor{
+    background: #22c3b4;
+    border-radius:10px;
+}
+.currenttipp{
+    box-shadow: 0 0 6px 5px #b12a2a;
+    background: #7e6969;
+}
+
+#megadd{
+    background: #22c3b4;
+    border: 2px solid #dd0e80;
+    border-radius: 10px;
+   
+    width: 78px;
+    position: absolute;
+    top:-30px;
+    right:-100px;
+    display:none;
+    padding:5px;
+    text-align:center;
+}
+
+.ready {
+    float: left;
+    background-color: yellow;
+    height: 22px;
+    width: 78px;
+    border-radius:5px;
+    margin-top: 3px;
+    display:none;
+}
+.szin{
+    border: 1px solid #FFFFFF;
+    border-radius: 50%;
+    float: left;
+    height: 20px;
+    width:  20px;
+    margin:2px;
+}
+#sz1 {
+    background: blue;
+}
+#sz2 {
+    background: red;
+}
+#sz3 {
+    background: yellow;
+}
+#sz4 {
+    background: green;
+}
+#sz5 {
+    background: white;
+}
+#sz6 {
+    background: black;
+}
