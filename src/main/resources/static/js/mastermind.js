@@ -11,7 +11,8 @@ var poz = 117; //
 var adat = [];
 var id;
 var kesz;
-const url = 'http://localhost:8080';
+const url = 'https://mymastermind1.herokuapp.com';
+//const url = 'http://localhost:8080';
 for (i = 1; i < maxSorok +1 ; i++ ){
     //console.log(i);
     var clon = temp.content.cloneNode(true);
