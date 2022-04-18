@@ -2,11 +2,42 @@ body{
     background:  #4fb312;
     height: 900px;
 }
+.reset{
+    position: absolute;
+    top:30px;
+    right:200px;
+    display:none;
+    cursor:pointer;
+    border: 2px solid #c32222; 
+    border-radius:13px;
+    padding: 4px;
+}
+.display{
+    position: absolute;
+    width: 200px;
+    top:30px;
+    left:200px;
+    display:none;
+    /* display: flex; */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    border: 5px solid rgb(244 244 21);
+    border-radius:25px;
+    padding: 8px 15px;
+    color: rgb(82, 80, 80);
+}
+.szoveg{
+    font-size: 17px;
+}
+
+  #min::after {
+    content: ": ";
+  }
 .container{
     max-height:550px;
     padding:30px;
-
-   
 }
 .board{
     width: 250px;
@@ -21,10 +52,32 @@ body{
 }
 h3{
     margin-top:10px;
+    margin-bottom: 19px;
     
+}
+.indit{
+    background: #0ee219;
+    display: block;
+    padding: 8px;
+    border-radius:8px;
+}
+.felad{
+    display: none;
+    background: #944852;
+    padding: 8px;
+    border-radius:8px;
+    color: rgb(221, 216, 224);
+}
+.kiir{
+    display: none;
+    background: #3a37db;
+    color: rgb(221, 216, 224);
+    padding: 8px;
+    border-radius:8px;
 }
 bottom{
     cursor:pointer;
+    /* border: 2px solid #74df1d; */
 }
 .megold{
     

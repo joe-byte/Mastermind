@@ -1,5 +1,7 @@
 temp = document.getElementsByTagName("template")[0];
 var cont = document.getElementsByClassName("board")[0];
+var ora = document.getElementsByClassName("display")[0];
+var resetg = document.getElementsByClassName("reset")[0];
 console.log(cont);
 var clon = temp.content.cloneNode(true);
 var gomb = document.getElementById("megadd");
@@ -13,22 +15,94 @@ var id;
 var kesz;
 const url = 'https://mymastermind1.herokuapp.com';
 //const url = 'http://localhost:8080';
-for (i = 1; i < maxSorok +1 ; i++ ){
-    //console.log(i);
-    var clon = temp.content.cloneNode(true);
-    //console.log(clon)
-    var c = clon.querySelector(".sor").id = "sor" + i;
-    //console.log(c)
-    clon.querySelector("#tipp0_1").setAttribute('id','tipp' + i + '_1');
-    clon.querySelector("#tipp0_2").setAttribute('id','tipp' + i + '_2');
-    clon.querySelector("#tipp0_3").setAttribute('id','tipp' + i + '_3');
-    clon.querySelector("#tipp0_4").setAttribute('id','tipp' + i + '_4');
-    clon.querySelector("#ered0_1").setAttribute('id','ered' + i + '_1');
-    clon.querySelector("#ered0_2").setAttribute('id','ered' + i + '_2');
-    clon.querySelector("#ered0_3").setAttribute('id','ered' + i + '_3');
-    clon.querySelector("#ered0_4").setAttribute('id','ered' + i + '_4');
-    cont.appendChild(clon);
-document.body.appendChild(clon);
+var testv1 = 0;
+var indit = document.getElementsByClassName('indit')[0];
+var feladas = document.getElementsByClassName('felad')[0];
+var kiir = document.getElementsByClassName('kiir')[0];
+
+var mperc = 0;
+var perc = 1;
+var mpercTxt = document.getElementById('sec');
+var percTxt = document.getElementById('min');
+var myInterval;
+
+function rajzol() {
+    for (i = 1; i < maxSorok + 1; i++) {
+        //console.log(i);
+        var clon = temp.content.cloneNode(true);
+        //console.log(clon)
+        var c = clon.querySelector(".sor").id = "sor" + i;
+        //console.log(c)
+        clon.querySelector("#tipp0_1").setAttribute('id', 'tipp' + i + '_1');
+        clon.querySelector("#tipp0_2").setAttribute('id', 'tipp' + i + '_2');
+        clon.querySelector("#tipp0_3").setAttribute('id', 'tipp' + i + '_3');
+        clon.querySelector("#tipp0_4").setAttribute('id', 'tipp' + i + '_4');
+        clon.querySelector("#ered0_1").setAttribute('id', 'ered' + i + '_1');
+        clon.querySelector("#ered0_2").setAttribute('id', 'ered' + i + '_2');
+        clon.querySelector("#ered0_3").setAttribute('id', 'ered' + i + '_3');
+        clon.querySelector("#ered0_4").setAttribute('id', 'ered' + i + '_4');
+        cont.appendChild(clon);
+        document.body.appendChild(clon);
+    }
+}
+
+function setmasodperc() {
+    if (mperc >= 60) {
+        setperc();
+        mperc = 0;
+    }
+    
+    if (mperc < 10) {
+        mpercTxt.innerHTML = '0' + mperc;
+    } else {
+        mpercTxt.innerHTML = mperc;
+    }
+    mperc++;
+}
+
+function setperc(){
+    if (perc >= 60) {
+        setperc();
+        perc = 0;
+    }
+    if (perc < 10) {
+        percTxt.innerHTML = '0' + perc;
+    } else {
+        percTxt.innerHTML = perc;
+    }
+    perc++;
+}
+
+function reset(){
+    gomb.style.display = "none";
+    resetg.style.display = "none";
+    ora.style.display = "none";
+    poz = 117;
+    indit.style.display = "block";
+    feladas.style.display = "none";
+    kiir.style.display = "none"; 
+    mperc = 0;
+    perc = 0;
+    setmasodperc();
+    setperc();
+    let tippek = document.getElementsByClassName('tipp');
+    let eredmenyek = document.getElementsByClassName('eredmeny');
+    for (i = 0; i < tippek.length; i++){
+        tippek[i].style.background = '#7e6969';
+    }
+    for (i = 0; i < eredmenyek.length; i++){
+        eredmenyek[i].style.background = '#df1010';
+    }
+    document.getElementById('sor' + currentSor).classList.remove("currentsor");
+    currentSor = maxSorok;
+    document.getElementById('tipp' + 
+        currentSor + '_' + currentTipp).classList.remove("currenttipp");
+    // for (i=1; i < 5; i++){
+    //     var t = document.getElementById('tipp0_' + i);
+
+    //     t.style.background = '#7e6969';
+    // }
+    
 }
 
 function start(){
@@ -36,6 +110,8 @@ function start(){
     console.log(poz);
     gomb.style.top = poz + "px";
     gomb.style.display = "block";
+    
+    ora.style.display = "flex";
     var s = document.getElementById('sor' + currentSor);
     s.classList.add("currentsor");
     var t = document.getElementById('tipp' + currentSor + '_1');
@@ -44,7 +120,23 @@ function start(){
     console.log(s);
     sendrequest(url+ '/mastrm/start', 'POST','text', null,'text', function(data) {
         console.log(data);
+        myInterval = setInterval(setmasodperc, 1000);
         id = data;
+    })
+    indit.style.display = "none";
+    feladas.style.display = "block";
+    kiir.style.display = "none";
+}
+
+function felad() {
+    //console.log("dddddd" + poz);
+    resetg.style.display = "block"
+    indit.style.display = "none";
+    feladas.style.display = "none";
+    kiir.style.display = "block"; 
+    clearInterval(myInterval);
+    sendrequest(url+ '/mastrm/felad', 'POST','text', id, 'JSON' ,function(data) {
+        megoldasKirajzol(data)
     })
 }
 
@@ -63,7 +155,12 @@ function _ready(){
             
             sendrequest(url+ '/mastrm/kesz', 'POST','text', id, 'JSON' ,function(data) {
                 console.log(typeof data);
+                indit.style.display = "none";
+                feladas.style.display = "none";
+                kiir.style.display = "block"; 
+                clearInterval(myInterval);
                 megoldasKirajzol(data)
+                resetg.style.display = "block";
             })
         }
     })
@@ -102,7 +199,7 @@ function eredmenyKirajzol(data, sor){
         if (eredmenyek[i-1] == 1){
             var t = document.getElementById('ered' + 
             sor + '_' + i);
-            console.log(t);
+           // console.log(t);
             t.style.background = 'white';
         }else if (eredmenyek[i-1] == 2){
             var t = document.getElementById('ered' + 
@@ -168,3 +265,12 @@ function sendrequest(url, method,btype, body,type, callback) {
    
     xhr.send(body)
 }   
+
+
+document.onreadystatechange = function () {
+    if (document.readyState === 'complete') {
+        rajzol();
+    }
+  }
+
+

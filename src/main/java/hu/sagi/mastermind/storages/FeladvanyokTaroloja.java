@@ -30,5 +30,7 @@ public class FeladvanyokTaroloja {
 		feladvanyok.put(feladvany.getiD(), feladvany) ;
 	}
 	
-	
+	public synchronized void deleteFeladvany(String id) {
+		feladvanyok.remove(id);
+	}
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hu.sagi.mastermind.domain.MastDtO;
 import hu.sagi.mastermind.domain.MastResponse;
+import hu.sagi.mastermind.exceptions.FullStorage;
+import hu.sagi.mastermind.exceptions.NotFoundKey;
 import hu.sagi.mastermind.services.MastService;
 
 @RestController
@@ -26,21 +28,26 @@ public class MastController {
 	}
 	
 	@PostMapping("/start")
-	public ResponseEntity<String> start() {
+	public ResponseEntity<String> start() throws FullStorage {
 		
 		return ResponseEntity.ok(mservice.feladvanytLetrehoz());
 	}
 	
 	
 	@PostMapping("/playing")
-	public ResponseEntity<MastResponse> playing(@RequestBody MastDtO tippek) {
+	public ResponseEntity<MastResponse> playing(@RequestBody MastDtO tippek) throws NotFoundKey {
 		System.out.println("Controller " + tippek);
 		return ResponseEntity.ok(mservice.tippEllenorzese(tippek));
 	}
 	
 	@PostMapping("/kesz")
-	public ResponseEntity<String []> megoldasKuldése(@RequestBody String azonosito) {
+	public ResponseEntity<String[]> megoldasKuldése(@RequestBody String azonosito) throws NotFoundKey {
 		System.out.println(" azon cotroller  " + azonosito);
+		return ResponseEntity.ok(mservice.megold(azonosito));
+	}
+	
+	@PostMapping("/felad")
+	public ResponseEntity<String[]> feladas(@RequestBody String azonosito) throws NotFoundKey {
 		return ResponseEntity.ok(mservice.megold(azonosito));
 	}
 }

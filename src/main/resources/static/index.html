@@ -10,10 +10,18 @@
 
 <body>
     <div class="container">
+        <bottom onclick="reset()" class="reset" >TÖRLÉS</bottom>
+        <div class="display">
+            <div class="szoveg">A játék kezdete óta eltelt idő:</div>
+            <!-- <div id="hour">00</div> -->
+            <div id="min">00</div>
+            <div id="sec">00</div>
+          </div>
         <div class="board">
         <h3>Mastermind</h3>
-        <bottom onclick="start()">START</bottom>
-        
+        <bottom onclick="start()" class="indit" >START</bottom>
+        <bottom onclick="felad()" class="felad" >Játék feadása</bottom>
+        <div class="kiir">Játék vége!</div>
         <div class="megold">
 
             <div class="mtippek">

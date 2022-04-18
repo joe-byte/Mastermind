@@ -6,6 +6,7 @@ public class Feladvany {
 
 	private int[] feladat;
 	private String iD;
+	private byte tTL;  //Time to live
 	
 	
 	public int[] getFeladat() {
@@ -19,6 +20,14 @@ public class Feladvany {
 	}
 	public void setiD(String iD) {
 		this.iD = iD;
+	}
+	
+	
+	public byte gettTL() {
+		return tTL;
+	}
+	public void settTL(byte tTL) {
+		this.tTL = tTL;
 	}
 	@Override
 	public String toString() {
